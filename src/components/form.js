@@ -20,7 +20,7 @@ function Form(props) {
 				<div className="flex flex-col" style={{ rowGap: props.rowGap ?? 16 }}>
 					{props.children}
 				</div>
-				<Button disabled={props.button.disabled} type="submit">
+				<Button disabled={methods.formState.isSubmitting} type="submit">
 					{props.button.label}
 				</Button>
 			</form>
@@ -34,7 +34,6 @@ Form.propTypes = {
 	onSubmit: PropTypes.func.isRequired,
 	button: PropTypes.shape({
 		label: PropTypes.string.isRequired,
-		disabled: PropTypes.bool,
 	}).isRequired,
 	rowGap: PropTypes.number,
 	validationSchema: PropTypes.object.isRequired,

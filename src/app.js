@@ -6,7 +6,7 @@ function App() {
 	return (
 		<div className="min-h-dvh flex flex-col">
 			<Header />
-			<main className="flex-auto p-4">
+			<main className="flex-auto p-4 flex flex-col">
 				<Routes>
 					{ROUTES.map((route) => (
 						<Route

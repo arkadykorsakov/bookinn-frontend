@@ -9,5 +9,5 @@ body {
 	font-size: 16px;
 	font-weight: 400;
 	line-height: 1.5;
-	@apply bg-white text-primary;
+	@apply bg-white text-[#2c2f3f];
 }
