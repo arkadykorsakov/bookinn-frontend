@@ -1,1 +1,3 @@
 export * from './userReducer'
+export * from './roomsReducer'
+export * from './roomReducer'

@@ -1,11 +1,12 @@
 import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
-// import { thunk } from 'redux-thunk';
-import { userReducer } from './reducers';
+import { thunk } from 'redux-thunk';
+import { roomReducer, roomsReducer, userReducer } from './reducers';
 
 const reducer = combineReducers({
 	user: userReducer,
+	rooms: roomsReducer,
+	room: roomReducer,
 })
-
 
 const composeEnhancers =
 	typeof window === 'object' &&
@@ -14,9 +15,7 @@ const composeEnhancers =
 		}) : compose();
 
 const enhancer = composeEnhancers(
-	applyMiddleware(),
-	// other store enhancers if any
+	applyMiddleware(thunk),
 );
 export const store = createStore(reducer, enhancer);
 
-// export const store = createStore(reducer, applyMiddleware(thunk));

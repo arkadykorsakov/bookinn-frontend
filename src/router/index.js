@@ -15,17 +15,21 @@ import RoomsPage from './RoomsPage';
 import AdminRoomsPage from './AdminRoomsPage/AdminRoomsPage';
 import ClientBookingsPage from './ClientBookingsPage';
 import AdminRoomPage from './AdminRoomPage';
+import { ROLE } from '../constants/roles';
 
-const ROUTES = [
-	{
-		id: ROUTE_INDEX,
-		component: IndexPage,
-		path: INDEX_PATH,
-	},
+const GUEST_ROUTES = [
 	{
 		id: ROUTE_AUTH,
 		component: AuthPage,
 		path: AUTH_PATH,
+	},
+];
+
+const USER_ROUTES = [
+	{
+		id: ROUTE_INDEX,
+		component: IndexPage,
+		path: INDEX_PATH,
 	},
 	{
 		id: ROUTE_ROOMS,
@@ -38,6 +42,14 @@ const ROUTES = [
 		path: ROOMS_PATH + '/:id',
 	},
 	{
+		id: ROUTE_CLIENT_BOOKINGS,
+		component: ClientBookingsPage,
+		path: CLIENT_BOOKINGS_PATH,
+	},
+];
+
+const ADMIN_ROUTES = [
+	{
 		id: ROUTE_ADMIN_ROOMS,
 		component: AdminRoomsPage,
 		path: ADMIN_ROOMS_PATH,
@@ -47,12 +59,13 @@ const ROUTES = [
 		component: AdminRoomPage,
 		path: ADMIN_ROOMS_PATH + '/:id',
 	},
-	{
-		id: ROUTE_CLIENT_BOOKINGS,
-		component: ClientBookingsPage,
-		path: CLIENT_BOOKINGS_PATH,
-	},
 ];
 
 
-export default ROUTES;
+const router = {
+	[ROLE.GUEST]: GUEST_ROUTES,
+	[ROLE.USER]: USER_ROUTES,
+	[ROLE.ADMIN]: ADMIN_ROUTES,
+};
+
+export default router;

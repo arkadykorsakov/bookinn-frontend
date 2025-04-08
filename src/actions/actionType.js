@@ -1,5 +1,9 @@
 const SET_USER = 'SET_USER';
+const SET_EMPTY_ROOMS = 'SET_EMPTY_ROOMS';
+const SET_ROOM = 'SET_ROOM';
 
 export const ACTION_TYPE = {
 	SET_USER,
+	SET_EMPTY_ROOMS,
+	SET_ROOM
 };

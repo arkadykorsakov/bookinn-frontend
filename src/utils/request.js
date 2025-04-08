@@ -6,5 +6,5 @@ export function request(url, method, data) {
 		method: method || 'GET',
 		body: data ? JSON.stringify(data) : undefined,
 		credentials: 'include'
-	}).then(res => res.json());
+	}).then(res => res.json()).catch(err => console.log(err));
 }
