@@ -1,11 +1,12 @@
 import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
 import { thunk } from 'redux-thunk';
-import { roomReducer, roomsReducer, userReducer } from './reducers';
+import { bookingsReducer, roomReducer, roomsReducer, userReducer } from './reducers';
 
 const reducer = combineReducers({
 	user: userReducer,
 	rooms: roomsReducer,
 	room: roomReducer,
+	bookings: bookingsReducer,
 })
 
 const composeEnhancers =

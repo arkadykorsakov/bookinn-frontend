@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Button from '../button';
 import { useNavigate } from 'react-router';
 import { ROOMS_PATH } from '../../constants/routes';
+import AddBookingButton from './AddBookingButton';
 
 function RoomCard(props) {
 	const navigate = useNavigate();
@@ -13,12 +14,13 @@ function RoomCard(props) {
 			alt="Номер"
 			className="w-full h-48 object-cover"
 		/>
-		<div className="p-4 flex flex-col items-start">
-			<Button onClick={()=>navigate(`${ROOMS_PATH}/${props.room.id}`)}>
+		<div className="p-4 flex items-center gap-5 flex-wrap">
+			<Button onClick={() => navigate(`${ROOMS_PATH}/${props.room.id}`)}>
 				Посмотреть
 			</Button>
+			<AddBookingButton roomId={props.room.id} imageUrl={props.room.imageUrl} />
 		</div>
-	</div>
+	</div>;
 }
 
 RoomCard.propTypes = {

@@ -2,7 +2,7 @@ import { useParams } from 'react-router';
 import Button from '../../components/button';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadRoomAsync } from '../../actions/loadRoomAsync';
+import { loadRoomAsync } from '../../actions';
 import Title from '../../components/title';
 import Loader from '../../components/loader';
 import { getRoom } from '../../selectors';

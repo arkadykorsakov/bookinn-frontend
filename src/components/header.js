@@ -9,7 +9,7 @@ import { ROLE } from '../constants/roles';
 import Button from './button';
 import { request } from '../utils/request';
 import { toaster } from '../constants/toast';
-import { resetUser } from '../actions/resetUser';
+import { resetUser } from '../actions';
 
 
 const LINKS = {

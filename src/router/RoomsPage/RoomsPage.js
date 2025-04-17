@@ -1,5 +1,5 @@
 import React from 'react';
-import { loadEmptyRoomsAsync } from '../../actions/loadEmptyRoomsAsync';
+import { loadEmptyRoomsAsync } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEmptyRooms } from '../../selectors';
 import Loader from '../../components/loader';
@@ -30,7 +30,7 @@ function RoomsPage() {
 
 		<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 			{
-				emptyRooms?.length && emptyRooms.map((room, idx) => <RoomCard key={idx} room={room} />)
+				!!emptyRooms?.length && emptyRooms.map((room, idx) => <RoomCard key={idx} room={room} />)
 			}
 		</div>
 	</section>;
