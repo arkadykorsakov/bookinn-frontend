@@ -6,7 +6,7 @@ import generateApiError from '../../../utils/generateApiError';
 import { setUser } from '../../../actions';
 import { toaster } from '../../../constants/toast';
 import { useNavigate } from 'react-router';
-import { ROOMS_PATH } from '../../../constants/routes';
+import { ADMIN_ROOMS_PATH, ROOMS_PATH } from '../../../constants/routes';
 import { useDispatch } from 'react-redux';
 
 
@@ -26,7 +26,11 @@ export default function LoginForm() {
 				dispatch(setUser(res.user));
 				reset();
 				toaster('Вы успешно вошли в систему', 'success');
-				navigate(ROOMS_PATH);
+				if (res.user.roleId === 1) {
+					navigate(ADMIN_ROOMS_PATH);
+				} else {
+					navigate(ROOMS_PATH);
+				}
 			}
 		});
 	};

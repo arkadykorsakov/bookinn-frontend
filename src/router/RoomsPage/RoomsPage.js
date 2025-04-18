@@ -25,12 +25,11 @@ function RoomsPage() {
 
 	if(error) return <Title>{error}</Title>;
 
-	return <section className="mb-8">
+	return <section>
 		<Title tag="h1" className="mb-5">Доступные номера</Title>
-
 		<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 			{
-				!!emptyRooms?.length && emptyRooms.map((room, idx) => <RoomCard key={idx} room={room} />)
+				!!emptyRooms?.length && emptyRooms.map((room) => <RoomCard key={room.id} room={room} />)
 			}
 		</div>
 	</section>;

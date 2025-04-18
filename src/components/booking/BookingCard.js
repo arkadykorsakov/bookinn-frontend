@@ -4,26 +4,8 @@ import Button from '../button';
 import { ReactComponent as TrashIcon } from '../../assets/icons/TrashIcon.svg';
 import { ReactComponent as PencilIcon } from '../../assets/icons/PencilIcon.svg';
 import formatDate from '../../utils/formatDate';
+import StatusBooking from './StatusBooking';
 
-
-const statusBadges = {
-	0: {
-		label: 'В ожидании',
-		className: 'bg-yellow-400 text-white',
-	},
-	1: {
-		label: 'Забронировано',
-		className: 'bg-blue-400 text-white',
-	},
-	2: {
-		label: 'Отклонено',
-		className: 'bg-red-500 text-white',
-	},
-	3: {
-		label: 'Отменено',
-		className: 'bg-gray-300 text-gray-700',
-	},
-};
 
 const BookingCard = ({ booking }) => {
 	const onDelete = () => {
@@ -39,12 +21,7 @@ const BookingCard = ({ booking }) => {
 			<img src={booking.room.imageUrl} alt="Фото" className="w-full h-48 object-cover" />
 
 			<div className="p-4 space-y-3">
-        <span
-			className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${statusBadges[booking.status]?.className}`}
-		>
-          {statusBadges[booking.status]?.label}
-        </span>
-
+				<StatusBooking status={booking.status} />
 				<div className="text-sm text-gray-700 space-y-1">
 					<p>
 						<span className="font-medium">Дата прибытия:</span> {formatDate(booking.startDate)}
@@ -53,7 +30,6 @@ const BookingCard = ({ booking }) => {
 						<span className="font-medium">Дата убытия:</span> {formatDate(booking.endDate)}
 					</p>
 				</div>
-
 				<div className="flex justify-end gap-2 pt-2">
 					<Button
 						variant="primary"
@@ -62,7 +38,6 @@ const BookingCard = ({ booking }) => {
 						<PencilIcon className="size-4" />
 						Редактировать
 					</Button>
-
 					<Button
 						variant="danger"
 						onClick={onDelete}

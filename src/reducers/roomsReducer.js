@@ -10,6 +10,12 @@ export const roomsReducer = (state = initialState, action) => {
 				empty: [...action.payload],
 			};
 		}
+		case ACTION_TYPE.SET_ROOMS: {
+			return {
+				...state,
+				entities: [...action.payload],
+			};
+		}
 		default:
 			return state;
 	}
