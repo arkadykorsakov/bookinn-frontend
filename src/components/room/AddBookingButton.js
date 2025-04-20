@@ -4,17 +4,18 @@ import React from 'react';
 import BookingForm from './BookingForm';
 import Title from '../title';
 import PropTypes from 'prop-types';
+import { useModal } from '../../hooks/useModal';
 
 const AddBookingButton = ({ roomId, imageUrl }) => {
-	const [isModalOpen, setModalOpen] = React.useState(false);
+	const { isOpen, handleOpen, handleClose } = useModal();
 	return <>
-		<Button onClick={() => setModalOpen(true)}>
+		<Button onClick={handleOpen}>
 			Забронировать
 		</Button>
-		<Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
+		<Modal isOpen={isOpen} onClose={handleClose}>
 			<Title size="md" className="mb-5">Забронировать номер</Title>
 			<img src={imageUrl} alt="Номер" className="my-5 size-[200px] object-cover" />
-			<BookingForm roomId={roomId} onEndSubmit={() => setModalOpen(false)} />
+			<BookingForm roomId={roomId} onEndSubmit={handleClose} />
 		</Modal>
 	</>;
 };

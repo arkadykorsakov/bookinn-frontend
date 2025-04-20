@@ -1,21 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { BOOKED, CANCELLED, PENDING, REJECTED, STATUSES } from '../../constants/statuses';
 
 const statusBadges = {
-	0: {
-		label: 'В ожидании',
+	[PENDING]: {
+		label: STATUSES[PENDING],
 		className: 'bg-yellow-400 text-white',
 	},
-	1: {
-		label: 'Забронировано',
+	[BOOKED]: {
+		label: STATUSES[BOOKED],
 		className: 'bg-blue-400 text-white',
 	},
-	2: {
-		label: 'Отклонено',
+	[REJECTED]: {
+		label: STATUSES[REJECTED],
 		className: 'bg-red-500 text-white',
 	},
-	3: {
-		label: 'Отменено',
+	[CANCELLED]: {
+		label: STATUSES[CANCELLED],
 		className: 'bg-gray-300 text-gray-700',
 	},
 };

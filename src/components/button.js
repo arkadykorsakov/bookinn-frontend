@@ -15,18 +15,9 @@ const variantClasses = {
 	`,
 };
 
-const Button = ({
-					type = 'button',
-					onClick,
-					disabled,
-					children,
-					variant = 'primary',
-				}) => {
+const Button = ({ type = 'button', onClick, disabled, children, variant = 'primary' }) => {
 
-	const baseClass = `
-		px-4 py-2 rounded-lg transition-colors duration-200
-		disabled:cursor-not-allowed flex items-center justify-center gap-1
-	`;
+	const baseClass = `px-4 py-2 rounded-lg transition-colors duration-200 disabled:cursor-not-allowed flex items-center justify-center gap-1`;
 
 	const variantClass = variantClasses[variant] || variantClasses.default;
 

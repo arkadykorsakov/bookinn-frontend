@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../button';
-import { ReactComponent as TrashIcon } from '../../assets/icons/TrashIcon.svg';
-import { ReactComponent as PencilIcon } from '../../assets/icons/PencilIcon.svg';
 import formatDate from '../../utils/formatDate';
 import StatusBooking from './StatusBooking';
 
@@ -35,14 +33,12 @@ const BookingCard = ({ booking }) => {
 						variant="primary"
 						onClick={onEdit}
 					>
-						<PencilIcon className="size-4" />
 						Редактировать
 					</Button>
 					<Button
 						variant="danger"
 						onClick={onDelete}
 					>
-						<TrashIcon className="size-4" />
 						Удалить
 					</Button>
 				</div>

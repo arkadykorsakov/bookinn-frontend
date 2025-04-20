@@ -42,7 +42,6 @@ const BookingForm = ({ isEdit, roomId, onEndSubmit }) => {
 	const navigate = useNavigate();
 	const onSubmit = (values, { reset }) => {
 		if (isEdit) {
-
 		} else {
 			dispatch(addBookingAsync(roomId, values));
 			navigate(CLIENT_BOOKINGS_PATH);

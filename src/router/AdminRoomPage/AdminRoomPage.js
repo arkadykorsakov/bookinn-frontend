@@ -3,10 +3,10 @@ import Title from '../../components/title';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRoom } from '../../selectors';
-import { loadRoomAsync, loadRoomBookingsByRoomIdAsync } from '../../actions';
+import { loadRoomAsync, loadBookingsByRoomAsync } from '../../actions';
 import Loader from '../../components/loader';
-import StatusBooking from '../../components/booking/StatusBooking';
-import formatDate from '../../utils/formatDate';
+import AdminBookingCard from '../../components/booking/AdminBookingCard';
+import { getBookings } from '../../selectors/getBookings';
 
 function AdminRoomPage() {
 	const { id } = useParams();
@@ -14,6 +14,7 @@ function AdminRoomPage() {
 	const [isLoading, setIsLoading] = React.useState(false);
 	const [error, setError] = React.useState('');
 	const room = useSelector(getRoom);
+	const bookings = useSelector(getBookings);
 
 	React.useEffect(() => {
 		setIsLoading(true);
@@ -23,7 +24,7 @@ function AdminRoomPage() {
 					setError(data.error);
 				}
 			});
-			dispatch(loadRoomBookingsByRoomIdAsync(id)).then((data) => {
+			dispatch(loadBookingsByRoomAsync(id)).then((data) => {
 				if (data.error) {
 					setError(data.error);
 				}
@@ -49,21 +50,10 @@ function AdminRoomPage() {
 				<p className="text-center md:text-left mb-4 md:mb-0">Информация о номере по запросу</p>
 			</div>
 		</div>
-
-		{!!room?.bookings?.length &&
-			room.bookings.map(booking => <div
-				className="bg-gray-100 border border-[#d5dce8] rounded-md p-4 flex flex-col md:flex-row gap-6 items-center">
-				<div>
-					<div>
-						Начало: {formatDate(booking.startDate)}
-					</div>
-					<div>
-						Окончание: {formatDate(booking.endDate)}
-					</div>
-					<div>Email: {booking.user.email}</div>
-				</div>
-				<StatusBooking status={booking.status} />
-			</div>)}
+		<div className="flex flex-col gap-5">
+			{!!bookings?.length &&
+				bookings.map(booking => <AdminBookingCard booking={booking} key={booking.id} />)}
+		</div>
 	</div>;
 }
 

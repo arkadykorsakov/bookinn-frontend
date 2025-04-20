@@ -13,6 +13,26 @@ export const bookingsReducer = (state = initialState, action) => {
 				me: action.payload,
 			};
 		}
+		case ACTION_TYPE.ADD_ME_BOOKING: {
+			return {
+				...state,
+				me: state.me.concat(action.payload),
+			};
+		}
+		case ACTION_TYPE.SET_BOOKINGS: {
+			return {
+				...state,
+				entities: action.payload,
+			};
+		}
+		case ACTION_TYPE.UPDATE_BOOKING: {
+			return {
+				...state,
+				entities: state.entities.map((booking) =>
+					booking.id === action.payload.id ? action.payload : booking,
+				),
+			};
+		}
 		default:
 			return state;
 	}

@@ -1,6 +1,6 @@
 import { ROLE } from '../constants/roles';
 import { ACTION_TYPE } from '../actions';
-import { USER_DATA } from '../components/sessionStorageKeys';
+import { USER_DATA } from '../constants/sessionStorageKeys';
 
 const initialState = sessionStorage.getItem(USER_DATA) ?
 	JSON.parse(sessionStorage.getItem(USER_DATA))

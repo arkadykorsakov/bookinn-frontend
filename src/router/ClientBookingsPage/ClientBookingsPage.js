@@ -3,7 +3,7 @@ import React from 'react';
 import Loader from '../../components/loader';
 import Title from '../../components/title';
 import { loadMeBookingsAsync } from '../../actions';
-import { getMeBookings } from '../../selectors/getMeBookings';
+import { getMeBookings } from '../../selectors';
 import BookingCard from '../../components/booking/BookingCard';
 
 function ClientBookingsPage() {

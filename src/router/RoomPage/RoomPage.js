@@ -1,11 +1,11 @@
 import { useParams } from 'react-router';
-import Button from '../../components/button';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadRoomAsync } from '../../actions';
 import Title from '../../components/title';
 import Loader from '../../components/loader';
 import { getRoom } from '../../selectors';
+import AddBookingButton from '../../components/room/AddBookingButton';
 
 function RoomPage() {
 	const { id } = useParams();
@@ -43,9 +43,7 @@ function RoomPage() {
 			<div className="flex flex-col justify-between flex-1">
 				<p className="text-center md:text-left mb-4 md:mb-0">Информация о номере по запросу</p>
 				<div className="md:self-end">
-					<Button>
-						Забронировать
-					</Button>
+					<AddBookingButton roomId={room.id} imageUrl={room.imageUrl}/>
 				</div>
 			</div>
 		</div>
