@@ -4,7 +4,7 @@ import yup from '../../../constants/yup';
 import { request } from '../../../utils/request';
 import generateApiError from '../../../utils/generateApiError';
 import { setUser } from '../../../actions';
-import { toaster } from '../../../constants/toast';
+import { toaster } from '../../../utils/toaster';
 import { useNavigate } from 'react-router';
 import { ADMIN_ROOMS_PATH, ROOMS_PATH } from '../../../constants/routes';
 import { useDispatch } from 'react-redux';

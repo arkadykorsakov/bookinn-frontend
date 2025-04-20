@@ -3,6 +3,7 @@ import formatDate from '../../utils/formatDate';
 import StatusBooking from './StatusBooking';
 import React from 'react';
 import ChangeStatusButton from './ChangeStatusButton';
+import { CANCELLED } from '../../constants/statuses';
 
 const AdminBookingCard = ({ booking }) => {
 	return <div
@@ -20,9 +21,9 @@ const AdminBookingCard = ({ booking }) => {
 			</div>
 			<StatusBooking status={booking.status} />
 		</div>
-		<ChangeStatusButton bookingId={booking.id} defaultStatus={booking.status} />
-	</div>
-}
+		{booking.status !== CANCELLED && <ChangeStatusButton bookingId={booking.id} defaultStatus={booking.status} />}
+	</div>;
+};
 
 AdminBookingCard.propTypes = {
 	booking: PropTypes.shape({

@@ -3,7 +3,7 @@ import Input from '../../../components/input';
 import yup from '../../../constants/yup';
 import { request } from '../../../utils/request';
 import generateApiError from '../../../utils/generateApiError';
-import { toaster } from '../../../constants/toast';
+import { toaster } from '../../../utils/toaster';
 import PropTypes from 'prop-types';
 
 

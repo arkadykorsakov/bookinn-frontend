@@ -5,6 +5,7 @@ import Select from '../select';
 import { BOOKED, PENDING, REJECTED, STATUSES } from '../../constants/statuses';
 import { useDispatch } from 'react-redux';
 import { changeStatusAsync } from '../../actions';
+import { toaster } from '../../utils/toaster';
 
 const schema = yup.object().shape({
 	status: yup.number().required(),
@@ -13,7 +14,11 @@ const schema = yup.object().shape({
 const StatusForm = ({ bookingId, onEndSubmit, defaultStatus }) => {
 	const dispatch = useDispatch();
 	const onSubmit = (values, { reset }) => {
-		dispatch(changeStatusAsync(bookingId, values));
+		dispatch(changeStatusAsync(bookingId, values)).then((res) => {
+			if (res.error) {
+				toaster(res.error, 'error');
+			}
+		});
 		reset();
 		onEndSubmit();
 	};

@@ -1,8 +1,8 @@
 import { ACTION_TYPE } from '../actions';
 
 const initialState = {
-	entities: null,
-	me: null,
+	entities: [],
+	me: [],
 };
 
 export const bookingsReducer = (state = initialState, action) => {
@@ -16,7 +16,7 @@ export const bookingsReducer = (state = initialState, action) => {
 		case ACTION_TYPE.ADD_ME_BOOKING: {
 			return {
 				...state,
-				me: state.me.concat(action.payload),
+				me: state.me.push(action.payload),
 			};
 		}
 		case ACTION_TYPE.SET_BOOKINGS: {
@@ -30,6 +30,22 @@ export const bookingsReducer = (state = initialState, action) => {
 				...state,
 				entities: state.entities.map((booking) =>
 					booking.id === action.payload.id ? action.payload : booking,
+				),
+			};
+		}
+		case ACTION_TYPE.UPDATE_ME_BOOKING: {
+			return {
+				...state,
+				me: state.me.map((booking) =>
+					booking.id === action.payload.id ? action.payload : booking,
+				),
+			};
+		}
+		case ACTION_TYPE.DELETE_ME_BOOKING: {
+			return {
+				...state,
+				me: state.me.filter((booking) =>
+					booking.id !== action.payload,
 				),
 			};
 		}

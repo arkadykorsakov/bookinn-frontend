@@ -1,4 +1,4 @@
-import { toaster } from '../constants/toast';
+import { toaster } from './toaster';
 import { apiErrors } from '../constants/apiErrors';
 
 const generateApiError = (response) => {

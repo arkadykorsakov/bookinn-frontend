@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from '../button';
 import { useNavigate } from 'react-router';
 import { ADMIN_ROOMS_PATH, ROOMS_PATH } from '../../constants/routes';
-import AddBookingButton from './AddBookingButton';
+import AddBookingButton from '../booking/AddBookingButton';
 
 function RoomCard(props) {
 	const navigate = useNavigate();

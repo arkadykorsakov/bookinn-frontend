@@ -3,9 +3,9 @@ import { setBookings } from './setBookings';
 
 export const loadBookingsByRoomAsync = (roomId) => (dispatch) =>
 	request(`/bookings/${roomId}`)
-		.then(bookingsData => {
-			if (bookingsData.data) {
-				dispatch(setBookings(bookingsData.data.bookings));
+		.then(res => {
+			if (res.data) {
+				dispatch(setBookings(res.data.bookings));
 			}
-			return bookingsData;
+			return res;
 		});

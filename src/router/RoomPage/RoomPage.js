@@ -5,7 +5,7 @@ import { loadRoomAsync } from '../../actions';
 import Title from '../../components/title';
 import Loader from '../../components/loader';
 import { getRoom } from '../../selectors';
-import AddBookingButton from '../../components/room/AddBookingButton';
+import AddBookingButton from '../../components/booking/AddBookingButton';
 
 function RoomPage() {
 	const { id } = useParams();

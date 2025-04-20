@@ -3,9 +3,9 @@ import { setEmptyRooms } from './setEmptyRooms';
 
 export const loadEmptyRoomsAsync = () => (dispatch) =>
 	request('/rooms/empty')
-		.then(roomsData => {
-			if (roomsData.data) {
-				dispatch(setEmptyRooms(roomsData.data.rooms));
+		.then(res => {
+			if (res.data) {
+				dispatch(setEmptyRooms(res.data.rooms));
 			}
-			return roomsData;
+			return res;
 		});

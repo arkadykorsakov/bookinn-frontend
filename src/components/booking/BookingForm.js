@@ -3,10 +3,10 @@ import Form from '../form';
 import Input from '../input';
 import yup from '../../constants/yup';
 import { useDispatch } from 'react-redux';
-import { addBookingAsync } from '../../actions';
-import { toaster } from '../../constants/toast';
+import { addBookingAsync, updateMeBookingAsync } from '../../actions';
 import { useNavigate } from 'react-router';
 import { CLIENT_BOOKINGS_PATH } from '../../constants/routes';
+import { toaster } from '../../utils/toaster';
 
 const today = new Date();
 today.setHours(0, 0, 0, 0);
@@ -14,38 +14,39 @@ today.setHours(0, 0, 0, 0);
 const schema = yup.object().shape({
 	startDate: yup
 		.date()
-		.transform((value, originalValue) => {
-			const date = new Date(originalValue);
-			return isNaN(date.getTime()) ? undefined : date;
-		})
 		.typeError('Введите корректную дату')
-		.required('Дата начала обязательна')
-		.min(today, 'Дата начала не может быть в прошлом'),
+		.min(new Date(), 'Дата начала не может быть в прошлом'),
 
 	endDate: yup
 		.date()
-		.transform((value, originalValue) => {
-			const date = new Date(originalValue);
-			return isNaN(date.getTime()) ? undefined : date;
-		})
 		.typeError('Введите корректную дату')
-		.required('Дата окончания обязательна')
-		.when('startDate', (startDate, schema) =>
-			startDate
-				? schema.min(startDate, 'Дата окончания должна быть позже даты начала')
-				: schema,
+		.min(
+			yup.ref('startDate'),
+			'Дата окончания должна быть позже даты начала',
 		),
 });
 
-const BookingForm = ({ isEdit, roomId, onEndSubmit }) => {
+const BookingForm = ({ isEdit, roomId, onEndSubmit, defaultValues = {} }) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const onSubmit = (values, { reset }) => {
+	const onSubmit = async (values, { reset }) => {
 		if (isEdit) {
+			dispatch(updateMeBookingAsync(defaultValues.bookingId, values)).then((res) => {
+				if (res.error) {
+					toaster(res.error, 'error');
+				} else {
+					toaster('Заявка обновлена', 'success');
+				}
+			});
 		} else {
-			dispatch(addBookingAsync(roomId, values));
-			navigate(CLIENT_BOOKINGS_PATH);
-			toaster('Заявка отправлена', 'success');
+			dispatch(addBookingAsync(roomId, values)).then((res) => {
+				if (res.error) {
+					toaster(res.error, 'error');
+				} else {
+					toaster('Заявка отправлена', 'success');
+					navigate(CLIENT_BOOKINGS_PATH);
+				}
+			});
 		}
 		reset();
 		onEndSubmit();
@@ -56,7 +57,9 @@ const BookingForm = ({ isEdit, roomId, onEndSubmit }) => {
 		onSubmit={onSubmit}
 		button={
 			{ label: isEdit ? 'Обновить бронь' : 'Забронировать' }
-		}>
+		}
+		defaultValues={defaultValues}
+	>
 		<Input name="startDate" label="Дата прибытия" type="date" />
 		<Input name="endDate" label="Дата убытия" type="date" />
 	</Form>;
@@ -66,6 +69,11 @@ BookingForm.propTypes = {
 	isEdit: PropTypes.bool,
 	roomId: PropTypes.string.isRequired,
 	onEndSubmit: PropTypes.func.isRequired,
+	defaultValues: PropTypes.shape({
+		startDate: PropTypes.string.isRequired,
+		endDate: PropTypes.string.isRequired,
+		bookingId: PropTypes.string.isRequired,
+	}),
 };
 
 export default BookingForm;

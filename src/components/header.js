@@ -8,7 +8,7 @@ import { getUserRole } from '../selectors';
 import { ROLE } from '../constants/roles';
 import Button from './button';
 import { request } from '../utils/request';
-import { toaster } from '../constants/toast';
+import { toaster } from '../utils/toaster';
 import { resetUser } from '../actions';
 
 
